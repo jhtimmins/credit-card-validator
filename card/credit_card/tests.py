@@ -10,6 +10,8 @@ class TestValidation(TestCase):
             (49927398717, False),
             (1234567812345678, False),
             (1234567812345670, True),
+            (0, False),
+            (-1, False),
         ]
 
         for num, valid in test_card_numbers:
