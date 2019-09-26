@@ -6,7 +6,7 @@ from card import credit_card
 
 @api_view(http_method_names=["POST"])
 def validate(request):
-    """Validate credit card number and return details, if valid."""
+    """Validate credit card number and return details, if valid. Require POST request to prevent exposing cc number in GET params."""
     cc_number = str(request.data.get("cc_number"))
 
     if not cc_number.isdigit() or not credit_card.is_valid(int(cc_number)):
