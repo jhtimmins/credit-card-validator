@@ -32,7 +32,7 @@ LENGTH_AMERICAN_EXPRESS = 15
 
 
 def is_valid(number: int) -> bool:
-
+    """Determines whether the CC number is valid based on Luhn's algorithm."""
     if number <= 0:
         return False
 
@@ -51,6 +51,7 @@ def is_valid(number: int) -> bool:
 
 
 def get_identifiers(number: int) -> dict:
+    """Break cc number into component pieces and return them with labels."""
     assert is_valid(number)
     as_string = str(number)
 
@@ -66,6 +67,7 @@ def get_identifiers(number: int) -> dict:
 
 
 def generate_number(prefix: str, length: int) -> int:
+  """Generate valid cc number with network-specific prefix and length."""
     interior_pieces = [
         str(random.randint(0, 9)) for _ in range(length - len(prefix) - 1)
     ]
@@ -79,6 +81,7 @@ def generate_number(prefix: str, length: int) -> int:
 
 
 def get_network(number: str) -> str:
+  """Return network for user-provided cc number prefix."""
     for network, prefixes in NETWORK_PREFIXES.items():
         if number.startswith(prefixes):
             return network

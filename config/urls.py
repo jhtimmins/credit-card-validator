@@ -16,6 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from card import views
+
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url("^admin/", admin.site.urls),
+    url("^cards/validate", views.validate, name="validate"),
+    url("^cards/", views.get_random, name="random_card"),
 ]

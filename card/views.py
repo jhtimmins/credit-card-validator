@@ -6,8 +6,8 @@ from card import credit_card
 
 @api_view(http_method_names=["POST"])
 def validate(request):
-
-    cc_number = request.data.get("cc_number")
+    """Validate credit card number and return details, if valid."""
+    cc_number = str(request.data.get("cc_number"))
 
     if not cc_number.isdigit() or not credit_card.is_valid(int(cc_number)):
         return Response({"valid": False})
@@ -22,6 +22,7 @@ def validate(request):
 
 @api_view()
 def get_random(request):
+    """Return random credit card number for specified CC network."""
     network = request.GET.get("network", "").lower()
 
     if network == "visa":
@@ -37,6 +38,8 @@ def get_random(request):
         cc_number = credit_card.get_random_mastercard()
 
     else:
+        # Invalid network should still return 200,
+        # while indicating that the network provided was invalid.
         return Response({"valid": False})
 
     return Response({"valid": True, "cc_number": cc_number})
