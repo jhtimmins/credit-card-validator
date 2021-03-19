@@ -3,7 +3,7 @@ attrs==19.1.0
 black==19.3b0
 Click==7.0
 Django==2.2.5
-djangorestframework==3.10.3
+djangorestframework==3.11.2
 mypy==0.720
 mypy-extensions==0.4.1
 python-dotenv==0.10.3
